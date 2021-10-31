@@ -1,6 +1,8 @@
-from . import views as news_views
-from django.urls import path, include
+from django.urls import path
+from .views import main_page, show_post, show_category
 
 urlpatterns = [
-    path('home/', news_views.home, name='home')
+    path('',main_page,name='Home' ),
+    path('post/<slug:post_slug>/', show_post,name='post' ),
+    path('category/<slug:category_slug>/',show_category,name='category'),
 ]

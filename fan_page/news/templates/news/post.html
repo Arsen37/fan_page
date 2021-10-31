@@ -1,0 +1,10 @@
+{% extends 'news/base.html' %}
+{% block contents %}
+
+    <div class="post_title"> <p align="center">  {{ post.title }} </p> </div>
+    <br>
+<img class="img-article-left" src="{{ post.image.url }}">
+<br>
+    {{ post.content|linebreaks }}
+
+{% endblock %}
