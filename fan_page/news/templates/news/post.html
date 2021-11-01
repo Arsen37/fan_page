@@ -1,4 +1,7 @@
 {% extends 'news/base.html' %}
+{% block title %}
+    <title>{{ post.title|truncatewords:15 }}</title>
+{% endblock %}
 {% block contents %}
 
     <div class="post_title"> <p align="center">  {{ post.title }} </p> </div>
