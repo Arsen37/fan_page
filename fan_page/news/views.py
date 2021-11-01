@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from .models import *
 
@@ -41,5 +41,7 @@ def show_category(requset, category_slug):
     }
     category = Category.objects.all()
     post = Post.objects.filter(cat__slug=category_slug)
-
-    return render(requset, 'news/show_category.html', {'menu': menu, 'category': category, 'post': post})
+    if len(post) ==0:
+        raise Http404
+    title='Categories'
+    return render(requset, 'news/show_category.html', {'menu': menu, 'category': category, 'post': post,'title':title})
