@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+{% block title %}
+   <title> {{ title }} </title>
+{% endblock %}
+{% block contents %}
+{{ user.username }}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    </form>
+{% endblock %}

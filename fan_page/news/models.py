@@ -1,28 +1,29 @@
 from django.urls import reverse
-
 from django.db import models
 
 
 class Post(models.Model):
     title = models.CharField(max_length=30, null=False)
     content = models.TextField(null=False)
-    image = models.ImageField(upload_to= 'photos/%Y/%m/%d')
+    image = models.ImageField(upload_to='photos/%Y/%m/%d')
     creation_date = models.DateTimeField(auto_now=True)
     update_date = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(max_length=30,unique=True,db_index=True)
-    cat = models.ForeignKey('Category',on_delete=models.PROTECT)
+    slug = models.SlugField(max_length=30, unique=True, db_index=True)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def __str__(self):
         return f'{self.title}'
 
     def get_absolute_url(self):
-        return reverse('post',kwargs={'post_slug':self.slug})
+        return reverse('post', kwargs={'post_slug': self.slug})
+
 
 class Category(models.Model):
     name = models.CharField(max_length=20, null=False)
-    slug = models.SlugField(max_length=20,unique=True,db_index=True)
+    slug = models.SlugField(max_length=20, unique=True, db_index=True)
 
     def __str__(self):
         return f'{self.name}'
+
     def get_absolute_url(self):
-        return reverse('category',kwargs={'category_slug':self.slug})
+        return reverse('category', kwargs={'category_slug': self.slug})
