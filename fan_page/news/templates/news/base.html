@@ -22,11 +22,13 @@
                     <img src="{% static 'news/img/Barcelona.ico' %}" alt="Photo" height="50" width="50" align="left" >
 
                 </a>
-<li class="News"><a href="#">{{ 'News' }}</a></li>
-<li class="Shop"><a href="{% url 'shop' %}">{{ 'Shop' }}</a></li>
-<li class="Contact us"><a href="{% url 'contact_us' %}">{{ 'Contact us' }}</a></li>
-<li class="About us"><a href="#">{{ 'About us' }}</a></li>
-<li class="last"><a href="{% url 'login' %}">{{ 'Log In' }}</a></li>
+{% for m in menu %}
+	{% if not forloop.last %}
+			<li><a href="{% url m.name_url %}">{{m.name}}</a></li>
+	{% else %}
+			<li class="last"><a href="#">{{m.name}}</a></li>
+	{% endif %}
+{% endfor %}
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -52,6 +54,34 @@
 	<div class="content-text">
 {% block contents %}
 {% endblock %}
+    <nav aria-label="Pagination">
+  <ul class="pagination">
+  {% if page_obj.has_previous %}
+      <li class="page-item">
+      <a class="page-link" title="Previous page" href="?page={{ page_obj.previous_page_number }}"> <  </a>
+      </li>
+  {% endif %}
+
+    {% for p in paginator.page_range %}
+{% if page_obj.has_other_pages %}
+{% if page_obj.number == p %}
+            <li class="page-link">
+            {{ p }}
+            </li>
+    {%elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+{% endif %}
+{% endif %}
+{% endfor %}
+  {% if page_obj.has_next %}
+      <li class="page-item">
+      <a class="page-link" title="Next page" href="?page={{ page_obj.next_page_number }}"> Next > </a>
+      </li>
+  {% endif %}
+  </ul>
+</nav>
 
 <!-- Конец блока контента -->
     </div>
