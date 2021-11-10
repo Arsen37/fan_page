@@ -19,3 +19,9 @@ class PostCategory(admin.ModelAdmin):
 
 
 admin.site.register(Category, PostCategory)
+
+class PostComents(admin.ModelAdmin):
+    list_display = ('commentary','post')
+    list_display_links = ('commentary',)
+
+admin.site.register(Comentaries,PostComents)

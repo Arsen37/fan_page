@@ -1,4 +1,6 @@
 from django.urls import reverse
+from django.contrib.auth.models import User
+
 
 from django.db import models
 
@@ -19,7 +21,7 @@ class Post(models.Model):
         return reverse('post',kwargs={'post_slug':self.slug})
 
     class Meta:
-        ordering=['-creation_date']
+        ordering=['creation_date']
 class Category(models.Model):
     name = models.CharField(max_length=20, null=False)
     slug = models.SlugField(max_length=20,unique=True,db_index=True)
@@ -28,3 +30,12 @@ class Category(models.Model):
         return f'{self.name}'
     def get_absolute_url(self):
         return reverse('category',kwargs={'category_slug':self.slug})
+
+class Comentaries(models.Model):
+    post=models.ForeignKey(Post,on_delete=models.PROTECT)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    commentary =models.TextField(verbose_name='What you think?')
+
+    class Meta:
+        ordering=['created_on']

@@ -11,6 +11,10 @@ class ContactusForm(forms.Form):
 
 
 class UserForm(UserCreationForm):
+    username=forms.CharField(label='User Name',widget=forms.TextInput())
+    password1=forms.CharField(label='Password',widget=forms.TextInput())
+    password2=forms.CharField(label='Confirm Password',widget=forms.TextInput())
+
     email = forms.EmailField(required=True)
 
     class Meta:

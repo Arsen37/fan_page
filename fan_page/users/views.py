@@ -6,6 +6,11 @@ from django.core.mail import send_mail
 
 
 def contact_us(request):
+    menu = [{'name': 'News', 'name_url': 'Home'},
+            {'name': 'Shop', 'name_url': 'shop'},
+            {'name': 'Contact us', 'name_url': 'contact_us'},
+            {'name': 'About us', 'name_url': 'about'},
+            ]
     if request.method == 'POST':
         form = ContactusForm(request.POST)
         if form.is_valid():
@@ -25,10 +30,10 @@ def contact_us(request):
                       from_email='sometestemaill123@gmail.com',
                       recipient_list=['sometestemaill123@gmail.com'])
             return redirect('thank_you')
-    elif request.method == 'GET':
+    else:
         form = ContactusForm()
 
-    return render(request, 'users/contact_us.html', {'form': form, 'title': 'Contact us'})
+    return render(request, 'users/contact_us.html', {'form': form, 'title': 'Contact us','menu':menu})
 
 
 def thank_you(request):
@@ -36,6 +41,11 @@ def thank_you(request):
 
 
 def register(request):
+    menu = [{'name': 'News', 'name_url': 'Home'},
+            {'name': 'Shop', 'name_url': 'shop'},
+            {'name': 'Contact us', 'name_url': 'contact_us'},
+            {'name': 'About us', 'name_url': 'about'},
+            ]
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -46,11 +56,12 @@ def register(request):
     else:
         form = UserForm()
 
-    return render(request, 'users/register.html', {'form': form, 'title': 'Register'})
+    return render(request, 'users/register.html', {'form': form, 'title': 'Register','menu':menu})
 
 
 @login_required
 def profile(request):
+
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():

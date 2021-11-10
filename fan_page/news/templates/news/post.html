@@ -1,4 +1,5 @@
 {% extends 'news/base.html' %}
+{% load static %}
 {% block title %}
     <title>{{ post.title|truncatewords:15 }}</title>
 {% endblock %}
@@ -9,5 +10,35 @@
 <img class="img-article-left" src="{{ post.image.url }}">
 <br>
     {{ post.content|linebreaks }}
+<br>
+<br>
+    <hr>
 
-{% endblock %}
+    <div>
+{% if request.user.is_authenticated %}
+        <form action="" method="post" class="control" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+            <button type="submit" class="btn btn-primary">Comment</button>
+                </div>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}"><h4>Sign In to comment </h4></a>
+    {% endif %}
+    <div>
+    <hr>
+{% for comment in comments %}
+    <div class="d-flex justify-content-between">
+        <div class="p-1"><h4 style="color: #cc1a1a">user.{{ comment.user|upper }}</h4></div>
+  <div class="p-2"></div>
+        <div class="p-2"><h4 style="background-color: #e1ddd7">{{ comment.created_on }}</h4></div>
+</div>
+
+
+        <div class="shadow p-3 mb-5 bg-light rounded">{{ comment.commentary }}</div>
+
+     {% endfor %}
+    </div>
+    </div>
+{% endblock  %}

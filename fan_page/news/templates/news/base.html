@@ -23,12 +23,17 @@
 
                 </a>
 {% for m in menu %}
-	{% if not forloop.last %}
 			<li><a href="{% url m.name_url %}">{{m.name}}</a></li>
-	{% else %}
-			<li class="last"><a href="#">{{m.name}}</a></li>
-	{% endif %}
 {% endfor %}
+{% if request.user.is_authenticated %}
+
+    <li class="last"><a href="{% url 'profile' %}" >{{ user.username }}</a> | <a href="{% url 'logout' %}">Logout </a></li>
+    {% else %}
+    <li class="last"><a href="{% url 'register'%}">Register </a> | <a href="{% url 'login' %}">Login </a></li>
+
+{% endif %}
+
+
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -36,7 +41,7 @@
 
 <table class="table-content" border=0 cellpadding="0" cellspacing="0">
 <tr>
-<!-- Sidebar слева -->
+<!-- category с -->
 	<td valign="top" class="left-chapters">
 	<ul id="leftchapters">
 	 {% for cate in category %}
@@ -44,13 +49,13 @@
 	{% endfor %}
 	</ul>
 </td>
-<!-- Конец Sidebar'а -->
+<!-- end category -->
 <td valign="top" class="content">
-	<!-- Хлебные крошки -->
+	<!--  -->
 	{% block breadcrumbs %}
 	{% endblock %}
 
-<!-- Блок контента -->
+<!-- block Contents -->
 	<div class="content-text">
 {% block contents %}
 {% endblock %}
@@ -83,7 +88,7 @@
   </ul>
 </nav>
 
-<!-- Конец блока контента -->
+<!-- End block content -->
     </div>
 </td></tr></table>
 </td></tr>
@@ -93,6 +98,6 @@
 		<p>&copy; Our Barcelona Page.</p>
 	</div>
 </td></tr></table>
-<!-- Конец footer'а и страницы -->
+<!-- end footer -->
 </body>
 </html>
