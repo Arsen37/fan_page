@@ -1,0 +1,25 @@
+{% extends 'news/base.html' %}
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block contents %}
+
+
+    <h3 class="fw-bold">{{product.title}}</h3>
+    <img src="{{ product.image.url }}" class="img-flui" align="center" width="300" height="250">
+    <h3 align="center">Price:</h3>
+    <h4 align="center">{{ product.price }}$</h4>
+    {% if request.user.is_authenticated %}
+
+    <h4 align="right">  <a href="{{ product.get_buy_url }}" class="btn btn-success"> Buy product</a></h4>
+    {% else %}
+        <h4 align="right">  <a href="{% url 'login' %}" class="btn btn-success"> Buy product</a></h4>
+    {% endif %}
+<br>
+    <hr>
+    <nav>
+            <h5 class="fst-italic">{{ product.description|linebreaks }}</h5>
+    </nav>
+
+{% endblock %}

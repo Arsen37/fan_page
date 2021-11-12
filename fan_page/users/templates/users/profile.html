@@ -3,7 +3,8 @@
    <title> {{ title }} </title>
 {% endblock %}
 {% block contents %}
-{{ user.username }}
+    <h4 style="color: coral">Update </h4>
+    <h5 style="color: #A96F3C">{{ user.username }}'s info </h5>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}

@@ -37,7 +37,13 @@ def contact_us(request):
 
 
 def thank_you(request):
-    return render(request, 'users/thank_you.html', {'title': 'Thank You!'})
+    menu = [{'name': 'News', 'name_url': 'Home'},
+            {'name': 'Shop', 'name_url': 'shop'},
+            {'name': 'Contact us', 'name_url': 'contact_us'},
+            {'name': 'About us', 'name_url': 'about'},
+            ]
+
+    return render(request, 'users/thank_you.html', {'title': 'Thank You!','menu':menu})
 
 
 def register(request):
@@ -61,6 +67,11 @@ def register(request):
 
 @login_required
 def profile(request):
+    menu = [{'name': 'News', 'name_url': 'Home'},
+            {'name': 'Shop', 'name_url': 'shop'},
+            {'name': 'Contact us', 'name_url': 'contact_us'},
+            {'name': 'About us', 'name_url': 'about'},
+            ]
 
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=request.user)
@@ -71,4 +82,4 @@ def profile(request):
     else:
         form = UserUpdateForm(instance=request.user)
 
-    return render(request, 'users/profile.html', {'form': form, 'title': 'Profile'})
+    return render(request, 'users/profile.html', {'form': form, 'title': 'Profile','menu':menu})

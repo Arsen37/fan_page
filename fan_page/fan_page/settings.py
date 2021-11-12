@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'shop.apps.ShopConfig',
     'users.apps.UsersConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [

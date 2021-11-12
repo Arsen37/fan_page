@@ -5,6 +5,7 @@
 
    <ul class="list-articles">
 	{% for p in post %}
+
 </div>
 <h2> {{ p.title }} </h2>
     <img height="200" width="200" align="left" src="{{ p.image.url }}">
@@ -14,6 +15,7 @@
 			<p class="link-read-post"><a href="{{p.get_absolute_url}}">Read</a></p>
 			</li>
         </div>
+        <hr>
     {% endfor %}
 </ul>
     </div>

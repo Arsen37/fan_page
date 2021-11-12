@@ -4,7 +4,7 @@ from .models import *
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'creation_date', 'image', 'slug')
-    list_display_links = ('id',)
+    list_display_links = ('id','title')
     search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}
 
