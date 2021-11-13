@@ -1,0 +1,1 @@
+web: gunicorn fan_page.wsgi
