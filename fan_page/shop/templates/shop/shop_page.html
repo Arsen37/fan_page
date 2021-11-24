@@ -18,19 +18,3 @@
                        </div>
              </div>
 {% endblock %}
-{% block contents %}
-             <div class="container">
-                       <div class="row">
-    {% for product in products %}
-
-    <div class="col-6">
-    <img src="{{ product.image.url }}" class="img-fluid rounded" width="200" height="200">
-        <h5 style="color: #280b54">{{ product.price }} $</h5>
-        <a  href="{{ product.get_absolute_url }}"> <h5 class="btn btn-outline-danger">{{ product.title }}</h5></a>
-
-    </div>
-    {% endfor %}
-                       <hr>
-                       </div>
-             </div>
-{% endblock %}

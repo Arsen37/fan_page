@@ -135,14 +135,20 @@ body, html {
 </table>
 </td></tr>
 <!-- Footer -->
-<tr>
-    <td valign=top>
-        <div id="footer">
-            <p>&copy; Our Barcelona Page.</p>
-        </div>
-    </td>
-</tr>
-</table>
+<tr><td valign=top>
+	<div id="footer">
+		<footer class="container1">
+    <h4 class="contact" > <a href="{% url 'contact_us' %}">Contact us</a> </h4>
+    <h4 class="last"> <a class="back" id="backtoTop" onclick="scrollToTop();return false;"href="#">Back to Top</a> </h4>
+</footer>
+<script>
+    function scrollToTop(){
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+window.addEventListener("beforeunload", function () {
+  document.body.classList.add("animate-out");
+});
+</script>
 <!-- end footer -->
 </body>
 </html>
