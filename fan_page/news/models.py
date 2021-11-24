@@ -39,3 +39,12 @@ class Comentaries(models.Model):
 
     class Meta:
         ordering=['created_on']
+
+class Comentaries(models.Model):
+    post=models.ForeignKey(Post,on_delete=models.PROTECT)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    commentary =models.TextField(verbose_name='What you think?')
+
+    class Meta:
+        ordering=['created_on']

@@ -75,11 +75,12 @@ def product_buy(request, buy_slug):
                       recipient_list=['sometestemaill123@gmail.com'])
             return redirect('thanks')
     else:
-            form = Buy_Product()
-    title='Order'
-    return render(request, 'shop/buying.html', {'form': form, 'menu': menu, 'product': product,'title':title})
+        form = Buy_Product()
+    title = 'Order'
+    return render(request, 'shop/buying.html', {'form': form, 'menu': menu, 'product': product, 'title': title})
 
-class Thanks(ShopMixin,TemplateView):
+
+class Thanks(ShopMixin, TemplateView):
     template_name = 'shop/thank_s.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):

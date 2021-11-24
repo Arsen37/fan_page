@@ -7,12 +7,12 @@ class AttributesAdmin(admin.ModelAdmin):
     search_fields = ['title',]
     prepopulated_fields = {'slug': ('title',)}
 
-admin.site.register(Attributes,AttributesAdmin)
+#admin.site.register(Attributes,AttributesAdmin)
 
 class AdminCategories(admin.ModelAdmin):
     list_display = ('name', 'slug')
     list_display_links = ('name',)
     prepopulated_fields = {'slug': ('name',)}
 
-admin.site.register(Category,AdminCategories)
+#admin.site.register(Category,AdminCategories)
 

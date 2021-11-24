@@ -4,7 +4,7 @@ from .models import *
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'creation_date', 'image', 'slug')
-    list_display_links = ('id','title')
+    list_display_links = ('id', 'title')
     search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}
 
@@ -20,8 +20,10 @@ class PostCategory(admin.ModelAdmin):
 
 admin.site.register(Category, PostCategory)
 
+
 class PostComents(admin.ModelAdmin):
-    list_display = ('commentary','post')
+    list_display = ('commentary', 'post')
     list_display_links = ('commentary',)
 
-admin.site.register(Comentaries,PostComents)
+
+admin.site.register(Comentaries, PostComents)
